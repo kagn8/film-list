@@ -1,0 +1,37 @@
+<div class="home bg bg-dark">
+  <div class="singleFilm">
+    <p class="col-2">Title:</p>
+    <p class="col-2">Duration:</p>
+    <p class="col-2">Average score:</p>
+    <p class="col-2">Favorite:</p>
+    <p class="col-2">Edit:</p>
+    <p class="col-2">Delete:</p>
+  </div>
+  <div class="singleFilm" *ngFor="let film of home">
+    <p class="col-2">{{film.title}}</p>
+    <p class="col-2">{{film.duration}}</p>
+    <p class="col-2" >{{average(film.rating)}}</p>
+    <p class="col-2"><i class="bi bi-heart"></i></p>
+    <p class="col-2"><i class="bi bi-pencil text-warning"></i></p>
+    <p class="col-2"><i class="bi bi-trash text-danger"></i></p>
+  </div>
+
+
+  <div class="add" (click)="add=!add"><i class="bi bi-plus"></i></div>
+
+
+  <div class="modale" *ngIf="add">
+    <h2>Add a film</h2>
+    <form [formGroup]="filmForm" (submit)="addFilm(); add=!add; resetForm()">
+      <label for="filmTitle">Title:</label>
+      <input class="form-control" type="text" formControlName="filmTitle" />
+      <label for="duration">Duration:</label>
+      <input class="form-control" type="number" formControlName="duration" />
+      <input class="btn btn-primary mt-3" type="submit" value="Save film" />
+      <input class="btn btn-secondary mt-3 ms-2" type="button" value="Cancel" (click)="add=!add; resetForm()"/>
+    </form>
+  </div>
+</div>
+
+
+

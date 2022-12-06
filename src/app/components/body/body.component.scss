@@ -1,0 +1,40 @@
+.home{
+  height: 95vh;
+  width: 85vw;
+  color: white;
+}
+.add{
+  position: fixed;
+  top: 85vh;
+  left: 90vw;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #0d6efd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  i{
+    font-size: 2rem;
+    color: white;
+  }
+}
+.modale{
+  position: absolute;
+  top: 40vh;
+  left: 40vw;
+  width: 20vw;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: rgb(110, 105, 105);
+}
+.singleFilm{
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  justify-content: space-evenly;
+  background: rgb(52,61,61);
+  background: linear-gradient(0deg, rgba(52,61,61,1) 0%, rgba(130,130,130,1) 100%);
+  font-size: 1.3rem;
+}

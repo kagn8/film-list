@@ -1,0 +1,37 @@
+{
+  "Films": [
+    {
+      "title": "Drive",
+      "favorite": [],
+      "watched": [],
+      "rating": [],
+      "duration": "110\"",
+      "id": 1
+    },
+    {
+      "title": "Star wars",
+      "favorite": [],
+      "watched": [],
+      "rating": [3],
+      "duration": "120\"",
+      "id": 2
+    },
+    {
+      "title": "007",
+      "favorite": [],
+      "watched": [],
+      "rating": [],
+      "duration": "130\"",
+      "id": 3
+    },
+    {
+      "title": "Django",
+      "favorite": [],
+      "watched": [],
+      "rating": [],
+      "duration": "150\"",
+      "id": 4
+    }
+  ],
+  "User": []
+}
