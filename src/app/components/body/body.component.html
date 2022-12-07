@@ -39,7 +39,7 @@
 
   <div class="modale" *ngIf="edit">
     <h2>Add a film</h2>
-    <form [formGroup]="patchFilmForm" (submit)="patchFilm(editId); edit=!edit;">
+    <form [formGroup]="patchFilmForm" (submit)="patchFilm(editId); edit=!edit; edited=!edited">
       <!-- <label for="filmTitle">Title:</label>
       <input class="form-control" type="text" formControlName="filmTitle" /> -->
       <label for="duration">Vote:</label>
@@ -47,6 +47,11 @@
       <input class="btn btn-danger mt-3" type="submit" value="Edit film" />
       <input class="btn btn-secondary mt-3 ms-2" type="button" value="Cancel" (click)=" edit=!edit; resetForm()"/>
     </form>
+  </div>
+
+  <div class="modale text-center" *ngIf="edited">
+    <h3>Film edited correctly <i class="bi bi-check-all text-ehite" style="font-size: 2.5rem;"></i></h3>
+    <div class="btn btn-primary m-2" (click)="edited=!edited">ok</div>
   </div>
 </div>
 

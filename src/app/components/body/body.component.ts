@@ -19,9 +19,11 @@ export class BodyComponent implements OnInit{
   home!:Film[]
   film!:Film
 
+
   deleted:boolean= false
   edit:boolean= false
   editId!:number
+  edited:boolean=false
 
 
   average(array:number[]){
@@ -64,6 +66,13 @@ export class BodyComponent implements OnInit{
   }
 
   getHome(){
-    this.serv.getFilms().subscribe((res:any) => this.home=res)
+    this.serv.searchObs.subscribe(req=>{
+      this.serv.getFilms().subscribe((res:any)=>{
+        if (req) {
+          this.home =res.filter((item:IFilm)=> item.title.toLowerCase().includes(req.toLowerCase()) )
+        } else this.home=res
+      })
+    }
+    )
   }
 }

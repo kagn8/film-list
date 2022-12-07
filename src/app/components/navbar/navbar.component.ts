@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ServiceService } from 'src/app/service/service.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
+
+  constructor(private navService:ServiceService){}
+
+  search!:string
+
+  searchText(){
+    this.navService.searchSub.next(this.search)
+  }
 
 }

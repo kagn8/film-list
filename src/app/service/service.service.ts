@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { IFilm } from '../interface/film';
 import { IUser } from '../interface/user';
 
@@ -9,6 +10,10 @@ import { IUser } from '../interface/user';
 export class ServiceService {
 
   constructor(private http:HttpClient) { }
+
+  searchSub = new BehaviorSubject<null|string>(null)
+
+  searchObs = this.searchSub.asObservable()
 
   getFilms(){
     return this.http.get('http://localhost:3000/films')

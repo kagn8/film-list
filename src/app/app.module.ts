@@ -7,7 +7,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HttpClientModule} from '@angular/common/http';
 import { BodyComponent } from './components/body/body.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './log/login/login.component';
 
 @NgModule({
@@ -22,6 +22,7 @@ import { LoginComponent } from './log/login/login.component';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserModule,
+    FormsModule,
     AppRoutingModule
   ],
   providers: [],

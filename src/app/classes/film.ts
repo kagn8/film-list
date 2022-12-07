@@ -7,6 +7,7 @@ export class Film implements IFilm {
   rating:number[]
   duration:string
   id?:number
+  added:number
 
   constructor(title:string, duration:number){
     this.title=title;
@@ -14,5 +15,6 @@ export class Film implements IFilm {
     this.watched=[];
     this.rating = []
     this.duration= `${duration}"`
+    this.added= Date.now()
   }
 }
