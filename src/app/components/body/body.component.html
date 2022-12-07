@@ -12,8 +12,8 @@
     <p class="col-2">{{film.duration}}</p>
     <p class="col-2" >{{average(film.rating)}}</p>
     <p class="col-2"><i class="bi bi-heart"></i></p>
-    <p class="col-2"><i class="bi bi-pencil text-warning"></i></p>
-    <p class="col-2"><i class="bi bi-trash text-danger"></i></p>
+    <p class="col-2" (click)="edit=!edit; editId= film.id!"><i class="bi bi-pencil text-warning"></i></p>
+    <p class="col-2" (click)="deleteFilm(film.id!)"><i class="bi bi-trash text-danger"></i></p>
   </div>
 
 
@@ -29,6 +29,23 @@
       <input class="form-control" type="number" formControlName="duration" />
       <input class="btn btn-primary mt-3" type="submit" value="Save film" />
       <input class="btn btn-secondary mt-3 ms-2" type="button" value="Cancel" (click)="add=!add; resetForm()"/>
+    </form>
+  </div>
+
+  <div class="modale text-center" *ngIf="deleted">
+    <h3>Film deleted correctly <i class="bi bi-check-all text-ehite" style="font-size: 2.5rem;"></i></h3>
+    <div class="btn btn-primary m-2" (click)="deleted=!deleted">ok</div>
+  </div>
+
+  <div class="modale" *ngIf="edit">
+    <h2>Add a film</h2>
+    <form [formGroup]="patchFilmForm" (submit)="patchFilm(editId); edit=!edit;">
+      <!-- <label for="filmTitle">Title:</label>
+      <input class="form-control" type="text" formControlName="filmTitle" /> -->
+      <label for="duration">Vote:</label>
+      <input class="form-control" type="number" formControlName="vote" />
+      <input class="btn btn-danger mt-3" type="submit" value="Edit film" />
+      <input class="btn btn-secondary mt-3 ms-2" type="button" value="Cancel" (click)=" edit=!edit; resetForm()"/>
     </form>
   </div>
 </div>

@@ -4,15 +4,17 @@
       "title": "Drive",
       "favorite": [],
       "watched": [],
-      "rating": [],
+      "rating": [
+        10
+      ],
       "duration": "110\"",
       "id": 1
     },
     {
-      "title": "Star wars",
+      "title": "Star Wars",
       "favorite": [],
       "watched": [],
-      "rating": [3],
+      "rating": [],
       "duration": "120\"",
       "id": 2
     },
@@ -20,16 +22,18 @@
       "title": "007",
       "favorite": [],
       "watched": [],
-      "rating": [],
+      "rating": [
+        10
+      ],
       "duration": "130\"",
       "id": 3
     },
     {
-      "title": "Django",
+      "title": "Random film",
       "favorite": [],
       "watched": [],
       "rating": [],
-      "duration": "150\"",
+      "duration": "200\"",
       "id": 4
     }
   ],

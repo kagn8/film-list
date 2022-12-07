@@ -2,10 +2,10 @@
   <div class="login-page" >
     <div class="form">
 
-      <form [formGroup]="signUpForm" class="register-form" *ngIf="animate" (ngSubmit)="ciao()">
-        <input type="text" placeholder="name"/>
-        <input type="password" placeholder="password"/>
-        <input type="text" placeholder="email address"/>
+      <form [formGroup]="signUpForm" class="register-form" *ngIf="animate" (ngSubmit)="signIn()" (input)="ciao()">
+        <input type="text" placeholder="username"  formControlName="username"/>
+        <input type="password" placeholder="password" formControlName="password"/>
+        <input type="text" placeholder="email address" formControlName="email"/>
         <button type="submit">create</button>
         <p class="message">Already registered? <a (click)="animate=!animate">Sign In</a></p>
       </form>

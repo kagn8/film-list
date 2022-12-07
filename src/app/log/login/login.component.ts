@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthserviceService } from 'src/app/auth/authservice.service';
+import { RegisterServiceService } from 'src/app/auth/register-service.service';
+import { User } from 'src/app/classes/user';
+import { IUser } from 'src/app/interface/user';
 
 @Component({
   selector: 'app-login',
@@ -7,10 +12,21 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit{
+
+  constructor(private regServ:RegisterServiceService, private AuthService:AuthserviceService, private router:Router){}
+
   ngOnInit(): void {
     this.resetForm()
   }
   animate = false
+
+  logged:boolean=true
+
+  authUser!:IUser
+  authLogin={
+    email: '',
+    password: ''
+  }
 
   loginForm!:FormGroup
   signUpForm!:FormGroup
@@ -27,7 +43,27 @@ export class LoginComponent implements OnInit{
     })
   }
 
-  ciao(){
-    alert("ciao")
+  ciao(){ console.log(this.signUpForm.value.username);
+    }
+
+  signIn(){
+    this.authUser= new User(this.signUpForm.value.username, this.signUpForm.value.password, this.signUpForm.value.email)
+    console.log(this.authUser);
+
+    this.regServ.register(this.authUser).subscribe(res=>{console.log(res);})
   }
-}
+
+    seiLoggato(){
+      if(localStorage.getItem("token") != null){this.logged=false}
+    }
+    entra(){
+      this.AuthService.login(this.authLogin).subscribe((res:any)=>{console.log(res);
+
+        this.AuthService.saveUser(res.accessToken); this.seiLoggato()
+        if (!this.logged) {
+          ;
+
+          this.router.navigate([''])
+        }
+  })
+    }}

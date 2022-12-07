@@ -4,4 +4,5 @@ export interface IFilm {
   watched:number[],
   rating:number[]
   duration:string
+  id?:number
 }

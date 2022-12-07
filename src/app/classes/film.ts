@@ -6,6 +6,7 @@ export class Film implements IFilm {
   watched:[]
   rating:number[]
   duration:string
+  id?:number
 
   constructor(title:string, duration:number){
     this.title=title;

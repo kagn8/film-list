@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IFilm } from '../interface/film';
+import { IUser } from '../interface/user';
 
 @Injectable({
   providedIn: 'root'
