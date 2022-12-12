@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthserviceService } from 'src/app/auth/authservice.service';
 import { Film } from 'src/app/classes/film';
+import { User } from 'src/app/classes/user';
 import { IFilm } from 'src/app/interface/film';
 import { ServiceService } from 'src/app/service/service.service';
 
@@ -12,13 +14,13 @@ import { ServiceService } from 'src/app/service/service.service';
 })
 export class BodyComponent implements OnInit{
 
-  constructor(private serv:ServiceService, private route : Router){}
+  constructor(private serv:ServiceService, private route : Router, private authService: AuthserviceService){}
   filmForm!: FormGroup;
   patchFilmForm!:FormGroup
   add=false
   home!:Film[]
   film!:Film
-
+  user!:any
 
   deleted:boolean= false
   edit:boolean= false
@@ -74,5 +76,12 @@ export class BodyComponent implements OnInit{
       })
     }
     )
+  }
+
+  logout(){
+    this.authService.userSub.next(false)
+    localStorage.removeItem('user')
+    alert("slogged")
+    this.serv.userSub.next(false)
   }
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { User } from '../classes/user';
 import { IFilm } from '../interface/film';
 import { IUser } from '../interface/user';
 
@@ -14,6 +15,12 @@ export class ServiceService {
   searchSub = new BehaviorSubject<null|string>(null)
 
   searchObs = this.searchSub.asObservable()
+
+  userSub = new BehaviorSubject<boolean>(false)
+
+  userObs = this.userSub.asObservable()
+
+  isLogged= false
 
   getFilms(){
     return this.http.get('http://localhost:3000/films')
@@ -32,5 +39,9 @@ export class ServiceService {
 
   patchFilm(id:number, film:Partial<IFilm>){
     return this.http.patch('http://localhost:3000/films/'+id, film)
+  }
+
+  isAutenticated(){
+    this.userObs.subscribe(res=> this.isLogged=res)
   }
 }

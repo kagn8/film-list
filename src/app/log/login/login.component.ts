@@ -3,8 +3,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthserviceService } from 'src/app/auth/authservice.service';
 import { RegisterServiceService } from 'src/app/auth/register-service.service';
+import { Auth } from 'src/app/classes/auth';
 import { User } from 'src/app/classes/user';
+import { IAuth } from 'src/app/interface/auth';
+
 import { IUser } from 'src/app/interface/user';
+import { ServiceService } from 'src/app/service/service.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +18,7 @@ import { IUser } from 'src/app/interface/user';
 })
 export class LoginComponent implements OnInit{
 
-  constructor(private regServ:RegisterServiceService, private AuthService:AuthserviceService, private router:Router){}
+  constructor( private auth:AuthserviceService, private router:Router, private userService: UserService, private serv:ServiceService){}
 
   ngOnInit(): void {
     this.resetForm()
@@ -33,7 +38,7 @@ export class LoginComponent implements OnInit{
 
   resetForm(){
     this.loginForm = new FormGroup({
-      username: new FormControl(null, Validators.required),
+      email: new FormControl(null, [Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
       password: new FormControl(null, Validators.required),
     })
     this.signUpForm = new FormGroup({
@@ -45,25 +50,25 @@ export class LoginComponent implements OnInit{
 
   ciao(){ console.log(this.signUpForm.value.username);
     }
+    authData!:User
 
   signIn(){
-    this.authUser= new User(this.signUpForm.value.username, this.signUpForm.value.password, this.signUpForm.value.email)
-    console.log(this.authUser);
+    this.authData = new User(this.signUpForm.value.username, this.signUpForm.value.password, this.signUpForm.value.email )
+    console.log(this.authData);
 
-    this.regServ.register(this.authUser).subscribe(res=>{console.log(res);})
+    this.userService.registerUser(this.authData)
+    .subscribe(data => {
+      console.log(data);
+      var logUser:IAuth = new Auth(this.signUpForm.value.email, this.signUpForm.value.password)
+      this.auth.login(logUser).subscribe(res=> console.log(res))
+    })
+  }
+  login(){
+    var logUser:IAuth = new Auth(this.loginForm.value.email, this.loginForm.value.password)
+    this.auth.login(logUser).subscribe((res:any)=> {console.log(res)
+      this.serv.userSub.next(res)
+      this.router.navigate(['home'])
+    })
   }
 
-    seiLoggato(){
-      if(localStorage.getItem("token") != null){this.logged=false}
-    }
-    entra(){
-      this.AuthService.login(this.authLogin).subscribe((res:any)=>{console.log(res);
-
-        this.AuthService.saveUser(res.accessToken); this.seiLoggato()
-        if (!this.logged) {
-          ;
-
-          this.router.navigate([''])
-        }
-  })
-    }}
+}
