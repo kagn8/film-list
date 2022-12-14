@@ -1,25 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthserviceService } from 'src/app/auth/authservice.service';
 import { Film } from 'src/app/classes/film';
-import { User } from 'src/app/classes/user';
 import { IFilm } from 'src/app/interface/film';
 import { IUser } from 'src/app/interface/user';
 import { ServiceService } from 'src/app/service/service.service';
 
 @Component({
-  selector: 'app-body',
-  templateUrl: './body.component.html',
-  styleUrls: ['./body.component.scss']
+  selector: 'app-seen',
+  templateUrl: './seen.component.html',
+  styleUrls: ['./seen.component.scss']
 })
-export class BodyComponent implements OnInit{
+export class SeenComponent {
+
 
   constructor(private serv:ServiceService, private route : Router, private authService: AuthserviceService){}
   filmForm!: FormGroup;
   patchFilmForm!:FormGroup
   add=false
-  home!:Film[]
+  home!:IFilm[]
   film!:Film
 
   deleted:boolean= false
@@ -35,6 +35,14 @@ export class BodyComponent implements OnInit{
   light!:boolean
 
 
+  ngOnInit(): void {
+    this.resetForm()
+    this.serv.getUser(this.userMod.id!).subscribe((res:any) =>{this.home = res.seen}
+    );
+    this.serv.darkObs.subscribe(res=> this.light = res)
+}
+
+
   average(array:number[]){
     if (array.length>0) {
       return (array.reduce((a, b) => a + b) / array.length).toFixed(1)
@@ -42,12 +50,6 @@ export class BodyComponent implements OnInit{
     }
 
 
-  ngOnInit(): void {
-    this.resetForm()
-    this.getHome()
-    this.serv.getUser(this.userMod.id!).subscribe((res:any) => this.userMod = res)
-    this.serv.darkObs.subscribe(res=> this.light = res)
-}
 
   addFilm(){
     this.film = new Film(this.filmForm.value.filmTitle, this.filmForm.value.duration)
@@ -87,6 +89,12 @@ export class BodyComponent implements OnInit{
     )
   }
 
+  logout(){
+    this.authService.userSub.next(false)
+    localStorage.removeItem('user')
+    alert("slogged")
+    this.serv.userSub.next(false)
+  }
   favorite(film:IFilm){
     film.favorite.push(this.userMod.id!)
     this.serv.patchFilm(film.id!, film).subscribe(res => {console.log(res)
@@ -132,6 +140,7 @@ export class BodyComponent implements OnInit{
 
     return variable
   }
+
 
 
 }

@@ -1,0 +1,59 @@
+<div class="home bg bg-dark" [ngClass]="{'bg-dark text-white' : !light, 'bg-white text-dark': light}">
+    <div class="singleFilm">
+      <p class="col-2" >Title:</p>
+      <p class="col-2">Duration:</p>
+      <p class="col-2">Average score:</p>
+      <p class="col-2">Favorite:</p>
+      <p class="col-2">Edit:</p>
+      <p class="col-2">Delete:</p>
+    </div>
+    <div class="singleFilm" *ngFor="let film of home">
+      <p class="col-2">{{film.title}}</p>
+      <p class="col-2">{{film.duration}}</p>
+      <p class="col-2" >{{average(film.rating)}}</p>
+      <p class="col-2"><i class="bi bi-heart" (click)="favorite(film)" *ngIf="!favControl(film)"></i> <i class="bi bi-heart-fill text-danger" *ngIf="favControl(film)" (click)="removeFav(film)"></i></p>
+      <p class="col-2" (click)="edit=!edit; editId= film.id!; "><i class="bi bi-pencil text-warning"></i></p>
+      <p class="col-2" (click)="deleteFilm(film.id!)"><i class="bi bi-trash text-danger"></i></p>
+    </div>
+
+
+    <div class="add" (click)="add=!add"><i class="bi bi-plus"></i></div>
+
+
+    <div class="modale" *ngIf="add">
+      <h2>Add a film</h2>
+      <form [formGroup]="filmForm" (submit)="addFilm(); add=!add; resetForm()">
+        <label for="filmTitle">Title:</label>
+        <input class="form-control" type="text" formControlName="filmTitle" />
+        <label for="duration">Duration:</label>
+        <input class="form-control" type="number" formControlName="duration" />
+        <input class="btn btn-primary mt-3" type="submit" value="Save film" />
+        <input class="btn btn-secondary mt-3 ms-2" type="button" value="Cancel" (click)="add=!add; resetForm()"/>
+      </form>
+    </div>
+
+    <div class="modale text-center" *ngIf="deleted">
+      <h3>Film deleted correctly <i class="bi bi-check-all text-ehite" style="font-size: 2.5rem;"></i></h3>
+      <div class="btn btn-primary m-2" (click)="deleted=!deleted">ok</div>
+    </div>
+
+    <div class="modale" *ngIf="edit">
+      <h2>Edit film</h2>
+      <button class="btn btn-primary" (click)="watched(editId)" *ngIf="controlWatch(editId)">Watched? <i class="bi bi-eye"></i></button>
+      <button class="btn btn-danger" (click)="watched(editId)" *ngIf="!controlWatch(editId)">Watched? <i class="bi bi-eye"></i></button>
+      <form [formGroup]="patchFilmForm" (submit)="patchFilm(editId); edit=!edit; edited=!edited">
+        <!-- <label for="filmTitle">Title:</label>
+        <input class="form-control" type="text" formControlName="filmTitle" /> -->
+        <label for="duration">Vote:</label>
+        <input class="form-control" type="number" formControlName="vote" />
+        <input class="btn btn-danger mt-3" type="submit" value="Edit film" />
+        <input class="btn btn-secondary mt-3 ms-2" type="button" value="Cancel" (click)=" edit=!edit; resetForm()"/>
+      </form>
+
+    </div>
+
+    <div class="modale text-center" *ngIf="edited">
+      <h3>Film edited correctly <i class="bi bi-check-all text-ehite" style="font-size: 2.5rem;"></i></h3>
+      <div class="btn btn-primary m-2" (click)="edited=!edited">ok</div>
+    </div>
+  </div>

@@ -1,15 +1,16 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-2">
+<nav class="navbar navbar-expand-lg p-2" *ngIf="user!=null" [ngClass]="{'navbar-dark bg-dark' : !light, 'navbar-light bg-primary bg bg-gradient ': light}">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand text-white" [routerLink]="['']">Navbar</a>
 
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="search" (input)="searchText()" name="search">
     </form>
-    <i class="bi bi-person-circle text-white"></i>
+    <i class="bi bi-lightbulb"  [ngClass]="{'text-white' : !light, 'text-dark': light}" (click)="darkMode()"></i>
+
   </div>
 
 </nav>

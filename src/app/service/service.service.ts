@@ -13,14 +13,16 @@ export class ServiceService {
   constructor(private http:HttpClient) { }
 
   searchSub = new BehaviorSubject<null|string>(null)
-
   searchObs = this.searchSub.asObservable()
 
   userSub = new BehaviorSubject<boolean>(false)
-
   userObs = this.userSub.asObservable()
 
+  darkSub = new BehaviorSubject<boolean>(false)
+  darkObs = this.darkSub.asObservable()
+
   isLogged= false
+
 
   getFilms(){
     return this.http.get('http://localhost:3000/films')
@@ -43,5 +45,15 @@ export class ServiceService {
 
   isAutenticated(){
     this.userObs.subscribe(res=> this.isLogged=res)
+  }
+
+  ///USER
+
+  patchUser(id:number, user:IUser){
+    return this.http.patch('http://localhost:3000/users/'+id, user)
+  }
+
+  getUser(id:number){
+    return this.http.get('http://localhost:3000/users/' + id)
   }
 }

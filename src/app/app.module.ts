@@ -10,6 +10,10 @@ import { BodyComponent } from './components/body/body.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './log/login/login.component';
 import { AuthinterceptorInterceptor } from './auth/authinterceptor.interceptor';
+import { FavoritesComponent } from './components/favorites/favorites.component';
+import { BestRatedComponent } from './components/best-rated/best-rated.component';
+import { SeenComponent } from './components/seen/seen.component';
+import { UnseenComponent } from './components/unseen/unseen.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,11 @@ import { AuthinterceptorInterceptor } from './auth/authinterceptor.interceptor';
     SidebarComponent,
     NavbarComponent,
     BodyComponent,
-    LoginComponent
+    LoginComponent,
+    FavoritesComponent,
+    BestRatedComponent,
+    SeenComponent,
+    UnseenComponent
   ],
   imports: [
     ReactiveFormsModule,

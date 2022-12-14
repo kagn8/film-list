@@ -1,42 +1,50 @@
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark side" style="width: 280px;">
+<div class="d-flex flex-column flex-shrink-0 p-3  bg-dark side" style="width: 280px;" *ngIf="user!=null" [ngClass]="{'bg-dark text-white' : !light, 'bg-secondary bg bg-gradient text-dark': light}">
   <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
     <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
 
   </a>
 
   <ul class="nav nav-pills flex-column mb-auto">
-    <li class="nav-item">
-      <a href="#" class="nav-link active" aria-current="page">
-        <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+    <li>
+      <a routerLink="home" class="nav-link text-white" [routerLinkActive]="['active']">
+        <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
         All
       </a>
     </li>
     <li>
-      <a href="#" class="nav-link text-white">
+      <a routerLink="/favorites" class="nav-link text-white" [routerLinkActive]="['active']">
         <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
         Favorites
       </a>
     </li>
     <li>
-      <a href="#" class="nav-link text-white">
+      <a routerLink="/best-rated" class="nav-link text-white" [routerLinkActive]="['active']">
         <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
         Best Rated
       </a>
     </li>
     <li>
-      <a href="#" class="nav-link text-white">
+      <a routerLink="/seen" class="nav-link text-white" [routerLinkActive]="['active']">
         <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-        Seen Last Month
+        Seen
       </a>
     </li>
     <li>
-      <a href="#" class="nav-link text-white">
+      <a routerLink="/unseen" class="nav-link text-white" [routerLinkActive]="['active']">
         <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
         Unseen
       </a>
     </li>
   </ul>
   <hr>
-  <strong *ngIf="user!=null"><i class="bi bi-person-circle"></i> {{user!.username}}</strong>
+  <strong *ngIf="user!=null" [ngClass]="{'text-white': light}" (click)="modalx =!modalx" role="button"><i class="bi bi-person-circle" ></i> {{user!.username}}</strong>
   <strong *ngIf="user==null" [routerLink]="'/login'">Login to continue</strong>
+</div>
+
+<div class="flex modalx text-center" *ngIf="modalx">
+  <p >do you want to switch accounts?</p>
+  <div>
+    <button class="btn btn-danger me-2" (click)="logout(); modalx=!modalx">logout</button>
+    <button class="btn btn-secondary" (click)="modalx =!modalx">cancel</button>
+  </div>
 </div>

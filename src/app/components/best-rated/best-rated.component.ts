@@ -1,20 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthserviceService } from 'src/app/auth/authservice.service';
 import { Film } from 'src/app/classes/film';
-import { User } from 'src/app/classes/user';
 import { IFilm } from 'src/app/interface/film';
 import { IUser } from 'src/app/interface/user';
 import { ServiceService } from 'src/app/service/service.service';
 
 @Component({
-  selector: 'app-body',
-  templateUrl: './body.component.html',
-  styleUrls: ['./body.component.scss']
+  selector: 'app-best-rated',
+  templateUrl: './best-rated.component.html',
+  styleUrls: ['./best-rated.component.scss']
 })
-export class BodyComponent implements OnInit{
-
+export class BestRatedComponent {
   constructor(private serv:ServiceService, private route : Router, private authService: AuthserviceService){}
   filmForm!: FormGroup;
   patchFilmForm!:FormGroup
@@ -30,16 +28,8 @@ export class BodyComponent implements OnInit{
   userMod:IUser = JSON.parse(localStorage.getItem('user')!).user
   realUser!:IUser
 
-  singleFilm!:IFilm
 
   light!:boolean
-
-
-  average(array:number[]){
-    if (array.length>0) {
-      return (array.reduce((a, b) => a + b) / array.length).toFixed(1)
-      } else return "N.C."
-    }
 
 
   ngOnInit(): void {
@@ -47,7 +37,13 @@ export class BodyComponent implements OnInit{
     this.getHome()
     this.serv.getUser(this.userMod.id!).subscribe((res:any) => this.userMod = res)
     this.serv.darkObs.subscribe(res=> this.light = res)
-}
+  }
+
+    average(array:number[]):number{
+      if (array.length>0) {
+        return parseInt((array.reduce((a, b) => a + b) / array.length).toFixed(1))
+        } else return parseInt("0.0")
+      }
 
   addFilm(){
     this.film = new Film(this.filmForm.value.filmTitle, this.filmForm.value.duration)
@@ -81,12 +77,20 @@ export class BodyComponent implements OnInit{
       this.serv.getFilms().subscribe((res:any)=>{
         if (req) {
           this.home =res.filter((item:IFilm)=> item.title.toLowerCase().includes(req.toLowerCase()) )
-        } else this.home=res
+          console.log(this.home);
+        } else {this.home=res.sort((a:any, b:any)=> {return this.average(a.rating) - this.average(b.rating)}).reverse()}
       })
     }
     )
+
   }
 
+  logout(){
+    this.authService.userSub.next(false)
+    localStorage.removeItem('user')
+    alert("slogged")
+    this.serv.userSub.next(false)
+  }
   favorite(film:IFilm){
     film.favorite.push(this.userMod.id!)
     this.serv.patchFilm(film.id!, film).subscribe(res => {console.log(res)
@@ -117,12 +121,8 @@ export class BodyComponent implements OnInit{
 
   watched(id:number){
     this.serv.getFilm(id).subscribe((res:any)=>{
-      console.log(res);
-      console.log(this.userMod.seen);
-      this.singleFilm = res
-      this.userMod.seen.push(this.singleFilm)
-      this.serv.patchUser(this.userMod.id!, this.userMod).subscribe(res=>localStorage.setItem('userMod', JSON.stringify(this.userMod)))
-      console.log(this.userMod.seen)
+      res.watched.push(this.userMod.id)
+      this.serv.patchFilm(id, res).subscribe(res=> console.log(res))
     })
   }
 

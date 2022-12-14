@@ -6,8 +6,8 @@ export class User implements IUser{
   password: string;
   email: string;
   id?:number
-  seen: [{ film: IFilm; date: number; }]|[];
-  favorite: IFilm[]|[];
+  seen: any[];
+  favorite: IFilm[];
 
 
   constructor(u:string, p:string, e:string){

@@ -1,19 +1,19 @@
-<div class="div bg bg-dark" style="width: 85vw; height: 94vh;">
+<div class="div bg bg-dark" style="width: 100vw; height: 100vh;">
   <div class="login-page" >
     <div class="form">
 
       <form [formGroup]="signUpForm" class="register-form" *ngIf="animate" (ngSubmit)="signIn()" >
         <input type="text" placeholder="username"  formControlName="username"/>
         <input type="password" placeholder="password" formControlName="password"/>
-        <input type="text" placeholder="email address" formControlName="email"/>
-        <button type="submit">create</button>
+        <input type="email" placeholder="email address" formControlName="email"/>
+        <button type="submit" >create</button>
         <p class="message">Already registered? <a (click)="animate=!animate">Sign In</a></p>
       </form>
 
       <form [formGroup]="loginForm" class="login-form" *ngIf="!animate" (ngSubmit)="login()">
         <input type="email" placeholder="email" formControlName="email" />
         <input type="password" placeholder="password" formControlName="password" />
-        <button type="submit">login</button>
+        <button type="submit" >login</button>
         <p class="message">Not registered? <a (click)="animate=!animate">Create an account</a></p>
       </form>
     </div>

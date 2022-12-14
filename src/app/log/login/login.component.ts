@@ -60,14 +60,15 @@ export class LoginComponent implements OnInit{
     .subscribe(data => {
       console.log(data);
       var logUser:IAuth = new Auth(this.signUpForm.value.email, this.signUpForm.value.password)
-      this.auth.login(logUser).subscribe(res=> console.log(res))
+      this.auth.login(logUser).subscribe(res=> this.router.navigate(['home']))
     })
   }
+  urlHome = this.router.url
   login(){
     var logUser:IAuth = new Auth(this.loginForm.value.email, this.loginForm.value.password)
-    this.auth.login(logUser).subscribe((res:any)=> {console.log(res)
-      this.serv.userSub.next(res)
+    this.auth.login(logUser).subscribe((res:any)=> {
       this.router.navigate(['home'])
+      this.serv.userSub.next(true)
     })
   }
 

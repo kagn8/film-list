@@ -5,6 +5,6 @@ export interface IUser {
   password:string
   email:string
   id?:number
-  seen:[{film:IFilm, date: number}]|[]
-  favorite:IFilm[]|[]
+  seen:IFilm[]
+  favorite:IFilm[]
 }
