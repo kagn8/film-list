@@ -2,6 +2,7 @@
   "Films": [
     {
       "title": "Star Wars",
+      "thumbnail":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/800px-Star_Wars_Logo.svg.png",
       "favorite": [
         2,
         6,
@@ -17,10 +18,12 @@
       ],
       "duration": "120\"",
       "id": 2,
-      "added": 1670434717933
+      "added": 1670434717933,
+      "description" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatem labore quo reprehenderit possimus optio qui pariatur maiores vitae, culpa facilis esse dicta aspernatur temporibus, provident incidunt nobis hic voluptates?"
     },
     {
       "title": "007",
+      "thumbnail":"https://www.007.com/wp-content/uploads/2017/07/rgb_logo_650-1.jpg",
       "favorite": [
         2,
         8
@@ -31,27 +34,54 @@
       ],
       "duration": "130\"",
       "id": 3,
-      "added": 1670434717933
+      "added": 1670434717933,
+      "description" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatem labore quo reprehenderit possimus optio qui pariatur maiores vitae, culpa facilis esse dicta aspernatur temporibus, provident incidunt nobis hic voluptates?"
     },
     {
       "title": "Random film",
+      "thumbnail":"https://loremflickr.com/320/240/dog",
       "favorite": [
         2
       ],
       "watched": [],
-      "rating": [],
+      "rating": [8],
       "duration": "200\"",
       "id": 4,
-      "added": 1670434717933
+      "added": 1670434717933,
+      "description" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatem labore quo reprehenderit possimus optio qui pariatur maiores vitae, culpa facilis esse dicta aspernatur temporibus, provident incidunt nobis hic voluptates?"
     },
     {
       "title": "Rocky",
+      "thumbnail":"https://www.rai.it/dl/img/2015/11/18/1280x720_1447853109595_rocky3.jpg",
       "favorite": [],
       "watched": [],
-      "rating": [],
+      "rating": [7],
       "duration": "100\"",
       "added": 1670935458336,
-      "id": 5
+      "id": 5,
+      "description" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatem labore quo reprehenderit possimus optio qui pariatur maiores vitae, culpa facilis esse dicta aspernatur temporibus, provident incidunt nobis hic voluptates?"
+    },
+    {
+      "title": "Drive",
+      "thumbnail":"https://pad.mymovies.it/filmclub/2010/02/122/locandina.jpg",
+      "favorite": [],
+      "watched": [],
+      "rating": [5],
+      "duration": "115\"",
+      "added": 1671110635282,
+      "id": 6,
+      "description" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatem labore quo reprehenderit possimus optio qui pariatur maiores vitae, culpa facilis esse dicta aspernatur temporibus, provident incidunt nobis hic voluptates?"
+    },
+    {
+      "title": "Action Man",
+      "thumbnail":"https://loremflickr.com/320/240/dog",
+      "favorite": [],
+      "watched": [],
+      "rating": [10],
+      "duration": "87\"",
+      "added": 1671110647666,
+      "id": 7,
+      "description" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatem labore quo reprehenderit possimus optio qui pariatur maiores vitae, culpa facilis esse dicta aspernatur temporibus, provident incidunt nobis hic voluptates?"
     }
   ],
   "users": [
@@ -213,7 +243,8 @@
           ],
           "rating": [
             5,
-            9
+            9,
+            10
           ],
           "duration": "120\"",
           "id": 2,

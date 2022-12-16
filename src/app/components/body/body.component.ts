@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthserviceService } from 'src/app/auth/authservice.service';
@@ -19,7 +19,7 @@ export class BodyComponent implements OnInit{
   filmForm!: FormGroup;
   patchFilmForm!:FormGroup
   add=false
-  home!:Film[]
+  home:Film[] = []
   film!:Film
 
   deleted:boolean= false
@@ -38,8 +38,20 @@ export class BodyComponent implements OnInit{
   average(array:number[]){
     if (array.length>0) {
       return (array.reduce((a, b) => a + b) / array.length).toFixed(1)
-      } else return "N.C."
+      } else return 0
     }
+
+  // average(array:number[]){
+  //      var total = 0;
+  //   var count = 0;
+
+  //   array.forEach(function(item) {
+  //       total += item;
+  //       count++;
+  //   });
+
+  //   return total / count;
+  //   }
 
 
   ngOnInit(): void {
@@ -132,6 +144,7 @@ export class BodyComponent implements OnInit{
 
     return variable
   }
+
 
 
 }

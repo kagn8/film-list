@@ -18,7 +18,7 @@ export class ServiceService {
   userSub = new BehaviorSubject<boolean>(false)
   userObs = this.userSub.asObservable()
 
-  darkSub = new BehaviorSubject<boolean>(false)
+  darkSub = new BehaviorSubject<boolean>(true)
   darkObs = this.darkSub.asObservable()
 
   isLogged= false

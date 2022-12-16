@@ -14,6 +14,13 @@ import { FavoritesComponent } from './components/favorites/favorites.component';
 import { BestRatedComponent } from './components/best-rated/best-rated.component';
 import { SeenComponent } from './components/seen/seen.component';
 import { UnseenComponent } from './components/unseen/unseen.component';
+import { GridModule } from '@progress/kendo-angular-grid';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
+import { TooltipModule } from '@progress/kendo-angular-tooltip';
+
+
+
 
 @NgModule({
   declarations: [
@@ -32,7 +39,11 @@ import { UnseenComponent } from './components/unseen/unseen.component';
     HttpClientModule,
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    GridModule,
+    BrowserAnimationsModule,
+    ExcelExportModule,
+    TooltipModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthinterceptorInterceptor, multi: true}],
   bootstrap: [AppComponent]

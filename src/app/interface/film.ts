@@ -6,4 +6,6 @@ export interface IFilm {
   duration:string
   id?:number
   added:number
+  description:string
+  thumbnail:string
 }

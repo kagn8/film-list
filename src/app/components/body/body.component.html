@@ -1,5 +1,5 @@
 <div class="home " [ngClass]="{'bg-dark text-white' : !light, 'bg-white text-dark': light}">
-  <div class="singleFilm">
+  <!-- <div class="singleFilm">
     <p class="col-2">Title:</p>
     <p class="col-2">Duration:</p>
     <p class="col-2">Average score:</p>
@@ -14,7 +14,65 @@
     <p class="col-2"><i class="bi bi-heart" (click)="favorite(film)" *ngIf="!favControl(film)"></i> <i class="bi bi-heart-fill text-danger" *ngIf="favControl(film)" (click)="removeFav(film)"></i></p>
     <p class="col-2" (click)="edit=!edit; editId= film.id!; "><i class="bi bi-pencil text-warning"></i></p>
     <p class="col-2" (click)="deleteFilm(film.id!)"><i class="bi bi-trash text-danger"></i></p>
-  </div>
+  </div> -->
+  <h1>grid</h1>
+
+  <!-- <input id="theme" class="themeChooser"/> -->
+
+
+  <kendo-grid [data]="home"
+  [kendoGridBinding]="home"
+  kendoGridSelectBy="id"
+  [(selectedKeys)]="home"
+  [pageSize]="5"
+  [pageable]="true"
+  [sortable]="true"
+  [groupable]="true"
+  [reorderable]="true"
+  [columnMenu]="{ filter: true }"
+  themeColor="main dark">
+
+
+
+  <ng-template kendoGridToolbarTemplate>
+
+    <button type="button" kendoGridExcelCommand icon="file-excel" (click)="excelexport.save()" class="btn btn-success">
+      Export to Excel <i class="bi bi-file-earmark-excel"></i>
+    </button>
+    <kendo-excelexport [data]="home" fileName="filmlist.xlsx" #excelexport>
+      <kendo-excelexport-column field="id" title="ID">
+      </kendo-excelexport-column>
+      <kendo-excelexport-column field="title" title="Title">
+      </kendo-excelexport-column>
+      <kendo-excelexport-column field="duration" title="Duration">
+      </kendo-excelexport-column>
+      <kendo-excelexport-column field="description" title="Description">
+      </kendo-excelexport-column>
+  </kendo-excelexport>
+  </ng-template>
+
+    <kendo-grid-column field="title" title="Title">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <img [src]="dataItem.thumbnail" height="50px" width="50px" style="border-radius: 50%;"> <strong> - {{dataItem.title}}</strong>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="duration" title="Duration"> </kendo-grid-column>
+    <kendo-grid-column  title="Rating">
+    <ng-template kendoGridCellTemplate let-ratingItem>
+      {{average(ratingItem.rating)}}
+    </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column  title="Description" >
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <span kendoTooltip tooltipClass="ken-span" title="{{dataItem.description}}" position="top" >
+          Hover to show description
+        </span>
+        </ng-template>
+    </kendo-grid-column>
+
+  </kendo-grid>
+
+
 
 
   <div class="add" (click)="add=!add"><i class="bi bi-plus"></i></div>
@@ -57,6 +115,16 @@
     <div class="btn btn-primary m-2" (click)="edited=!edited">ok</div>
   </div>
 </div>
-
-
+<!-- <kendo-grid
+[resizable]="true"
+[kendoGridBinding]="home"
+[filterable]="true"
+[groupable]="true"
+[sortable]="true"
+[pageSize]="10"
+[pageable]="true"
+[height]="510">
+<kendo-grid-column field="title" title="title" [width]="140"></kendo-grid-column>
+</kendo-grid>
+ -->
 
