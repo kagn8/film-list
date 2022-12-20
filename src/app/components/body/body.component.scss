@@ -1,11 +1,12 @@
-// @import url(../../../../node_modules/@progress/kendo-theme-bootstrap/scss/grid/_layout.scss)
-
-.home{
+.grid-main {
+  width: 85vw;
+}
+.home {
   height: 95vh;
   width: 85vw;
   color: white;
 }
-.add{
+.add {
   position: fixed;
   top: 85vh;
   left: 90vw;
@@ -17,12 +18,12 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  i{
+  i {
     font-size: 2rem;
     color: white;
   }
 }
-.modale{
+.modale {
   position: absolute;
   top: 40vh;
   left: 40vw;
@@ -31,7 +32,7 @@
   border-radius: 15px;
   background-color: rgb(110, 105, 105);
 }
-.singleFilm{
+.singleFilm {
   display: flex;
   align-items: center;
   padding: 3px;
@@ -40,72 +41,7 @@
   border-bottom: 1px solid rgb(199, 199, 199);
 }
 
-
-/////
-
-
-.ken-span{
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  background-color: red !important
+.my-class * {
+  color: white;
+  background: #0d6efd !important;
 }
-// .kendoTooltip.kenspan{
-//   background-color: #0d6efd;
-// }
-// .ken-span .k-callout {
-//   background-color: red !important;
-//   color: blue;
-// }
-// .ken-span *{
-//   font-size: 1.2em;
-//   color: yellow;
-//   background: blue !important;
-//   }
-
-//   .tooltipcell{background-color:green;}
-
-//   .k-callout-s {
-//     border-top-color: red;
-// }
-// .red-tooltip + .tooltip > .tooltip-inner {background-color: #f00;}
-
-// .k-callout-s {
-//   border-top-color: rgb(255, 9, 9);
-// }
-
-// .ken-span *{
-//   background: red;
-//   color: white;
-//   box-shadow: none;
-//   text-shadow: none;
-// }
-
-// .ken-span .k-callout{
-//   background-color: red;
-//   color: blue;
-// }
-
-// .k-animation-container-shown, .k-animation-container>.k-popup{
-//   box-shadow: none;
-// }
-
-// .k-tooltip-wrapper .k-tooltip{
-//   box-shadow: 2px 2px 7px 0 rgba(0, 0, 0, 0.5);
-// }
-
-// .ken-span .k-callout{
-//   filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.3));
-// }
-
-// .tooltip .tooltip-inner {
-//   color: white;
-//   background-color: blue;
-//   border-radius:5px;
-// }
-
-// .k-tooltip{
-//   background: red !important;
-//   width: 300px;
-//   height: 300px;
-// }

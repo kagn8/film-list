@@ -2,7 +2,7 @@
   "Films": [
     {
       "title": "Star Wars",
-      "thumbnail":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/800px-Star_Wars_Logo.svg.png",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/800px-Star_Wars_Logo.svg.png",
       "favorite": [
         2,
         6,
@@ -14,74 +14,113 @@
       ],
       "rating": [
         5,
-        9
+        9,
+        3
       ],
       "duration": "120\"",
       "id": 2,
       "added": 1670434717933,
-      "description" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatem labore quo reprehenderit possimus optio qui pariatur maiores vitae, culpa facilis esse dicta aspernatur temporibus, provident incidunt nobis hic voluptates?"
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatem labore quo reprehenderit possimus optio qui pariatur maiores vitae, culpa facilis esse dicta aspernatur temporibus, provident incidunt nobis hic voluptates?",
+      "vote": 5.666666666666667
     },
     {
       "title": "007",
-      "thumbnail":"https://www.007.com/wp-content/uploads/2017/07/rgb_logo_650-1.jpg",
+      "thumbnail": "https://www.007.com/wp-content/uploads/2017/07/rgb_logo_650-1.jpg",
       "favorite": [
         2,
         8
       ],
       "watched": [],
       "rating": [
-        10
+        10,
+        9
       ],
       "duration": "130\"",
       "id": 3,
       "added": 1670434717933,
-      "description" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatem labore quo reprehenderit possimus optio qui pariatur maiores vitae, culpa facilis esse dicta aspernatur temporibus, provident incidunt nobis hic voluptates?"
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatem labore quo reprehenderit possimus optio qui pariatur maiores vitae, culpa facilis esse dicta aspernatur temporibus, provident incidunt nobis hic voluptates?",
+      "vote": 9.5
     },
     {
       "title": "Random film",
-      "thumbnail":"https://loremflickr.com/320/240/dog",
+      "thumbnail": "https://loremflickr.com/320/240/dog",
       "favorite": [
         2
       ],
       "watched": [],
-      "rating": [8],
+      "rating": [
+        8,
+        2,
+        5
+      ],
       "duration": "200\"",
       "id": 4,
       "added": 1670434717933,
-      "description" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatem labore quo reprehenderit possimus optio qui pariatur maiores vitae, culpa facilis esse dicta aspernatur temporibus, provident incidunt nobis hic voluptates?"
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatem labore quo reprehenderit possimus optio qui pariatur maiores vitae, culpa facilis esse dicta aspernatur temporibus, provident incidunt nobis hic voluptates?",
+      "vote": 5
     },
     {
       "title": "Rocky",
-      "thumbnail":"https://www.rai.it/dl/img/2015/11/18/1280x720_1447853109595_rocky3.jpg",
+      "thumbnail": "https://www.rai.it/dl/img/2015/11/18/1280x720_1447853109595_rocky3.jpg",
       "favorite": [],
       "watched": [],
-      "rating": [7],
+      "rating": [
+        7,
+        6
+      ],
       "duration": "100\"",
       "added": 1670935458336,
       "id": 5,
-      "description" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatem labore quo reprehenderit possimus optio qui pariatur maiores vitae, culpa facilis esse dicta aspernatur temporibus, provident incidunt nobis hic voluptates?"
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatem labore quo reprehenderit possimus optio qui pariatur maiores vitae, culpa facilis esse dicta aspernatur temporibus, provident incidunt nobis hic voluptates?",
+      "vote": 6.5
     },
     {
       "title": "Drive",
-      "thumbnail":"https://pad.mymovies.it/filmclub/2010/02/122/locandina.jpg",
-      "favorite": [],
+      "thumbnail": "https://pad.mymovies.it/filmclub/2010/02/122/locandina.jpg",
+      "favorite": [
+        8
+      ],
       "watched": [],
-      "rating": [5],
+      "rating": [
+        5,
+        7
+      ],
       "duration": "115\"",
       "added": 1671110635282,
       "id": 6,
-      "description" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatem labore quo reprehenderit possimus optio qui pariatur maiores vitae, culpa facilis esse dicta aspernatur temporibus, provident incidunt nobis hic voluptates?"
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatem labore quo reprehenderit possimus optio qui pariatur maiores vitae, culpa facilis esse dicta aspernatur temporibus, provident incidunt nobis hic voluptates?",
+      "vote": 6
     },
     {
       "title": "Action Man",
-      "thumbnail":"https://loremflickr.com/320/240/dog",
+      "thumbnail": "https://loremflickr.com/320/240/dog",
       "favorite": [],
       "watched": [],
-      "rating": [10],
+      "rating": [
+        10,
+        5
+      ],
       "duration": "87\"",
       "added": 1671110647666,
       "id": 7,
-      "description" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatem labore quo reprehenderit possimus optio qui pariatur maiores vitae, culpa facilis esse dicta aspernatur temporibus, provident incidunt nobis hic voluptates?"
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatem labore quo reprehenderit possimus optio qui pariatur maiores vitae, culpa facilis esse dicta aspernatur temporibus, provident incidunt nobis hic voluptates?",
+      "vote": 7.5
+    },
+    {
+      "title": "Spider-man",
+      "favorite": [
+        8
+      ],
+      "watched": [],
+      "rating": [
+        6
+      ],
+      "duration": "125\"",
+      "added": 1671442721691,
+      "description": "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatem labore quo reprehenderit possimus optio qui pariatur maiores vitae, culpa facilis esse dicta aspernatur temporibus, provident incidunt nobis hic voluptates?",
+      "thumbnail": "https://pbs.twimg.com/profile_images/1222646977332174849/xWcD6t_Q_400x400.jpg",
+      "id": 8,
+      "vote": 6
     }
   ],
   "users": [
@@ -255,7 +294,7 @@
     },
     {
       "email": "carlo@carlo.it",
-      "password": "$2a$10$JAtvxaoUOJZsIrGd4J55Q./E7gVt489MwWbaZ/JhHR0yyZH6die7S",
+      "password": "$2a$10$xWcK9T95k4kEm0CPzB4rf.hEKtuUeJp6gUJ4i89zSOp.tlK4c71sC",
       "username": "Carlo",
       "seen": [
         {
@@ -284,6 +323,34 @@
           "duration": "130\"",
           "id": 3,
           "added": 1670434717933
+        },
+        {
+          "title": "Drive",
+          "thumbnail": "https://pad.mymovies.it/filmclub/2010/02/122/locandina.jpg",
+          "favorite": [
+            8
+          ],
+          "watched": [],
+          "rating": [
+            5
+          ],
+          "duration": "115\"",
+          "added": 1671110635282,
+          "id": 6,
+          "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatem labore quo reprehenderit possimus optio qui pariatur maiores vitae, culpa facilis esse dicta aspernatur temporibus, provident incidunt nobis hic voluptates?"
+        },
+        {
+          "title": "Spider-man",
+          "favorite": [
+            8
+          ],
+          "watched": [],
+          "rating": [],
+          "duration": "125\"",
+          "added": 1671442721691,
+          "description": "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatem labore quo reprehenderit possimus optio qui pariatur maiores vitae, culpa facilis esse dicta aspernatur temporibus, provident incidunt nobis hic voluptates?",
+          "thumbnail": "https://pbs.twimg.com/profile_images/1222646977332174849/xWcD6t_Q_400x400.jpg",
+          "id": 8
         }
       ],
       "id": 8

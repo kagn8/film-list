@@ -8,4 +8,5 @@ export interface IFilm {
   added:number
   description:string
   thumbnail:string
+  vote:number
 }

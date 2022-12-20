@@ -1,4 +1,7 @@
-<div class="home " [ngClass]="{'bg-dark text-white' : !light, 'bg-white text-dark': light}">
+<div
+  class="home"
+  [ngClass]="{ 'bg-dark text-white': !light, 'bg-white text-dark': light }"
+>
   <!-- <div class="singleFilm">
     <p class="col-2">Title:</p>
     <p class="col-2">Duration:</p>
@@ -15,104 +18,194 @@
     <p class="col-2" (click)="edit=!edit; editId= film.id!; "><i class="bi bi-pencil text-warning"></i></p>
     <p class="col-2" (click)="deleteFilm(film.id!)"><i class="bi bi-trash text-danger"></i></p>
   </div> -->
-  <h1>grid</h1>
 
   <!-- <input id="theme" class="themeChooser"/> -->
 
-
-  <kendo-grid [data]="home"
-  [kendoGridBinding]="home"
-  kendoGridSelectBy="id"
-  [(selectedKeys)]="home"
-  [pageSize]="5"
-  [pageable]="true"
-  [sortable]="true"
-  [groupable]="true"
-  [reorderable]="true"
-  [columnMenu]="{ filter: true }"
-  themeColor="main dark">
-
-
-
-  <ng-template kendoGridToolbarTemplate>
-
-    <button type="button" kendoGridExcelCommand icon="file-excel" (click)="excelexport.save()" class="btn btn-success">
-      Export to Excel <i class="bi bi-file-earmark-excel"></i>
-    </button>
-    <kendo-excelexport [data]="home" fileName="filmlist.xlsx" #excelexport>
-      <kendo-excelexport-column field="id" title="ID">
-      </kendo-excelexport-column>
-      <kendo-excelexport-column field="title" title="Title">
-      </kendo-excelexport-column>
-      <kendo-excelexport-column field="duration" title="Duration">
-      </kendo-excelexport-column>
-      <kendo-excelexport-column field="description" title="Description">
-      </kendo-excelexport-column>
-  </kendo-excelexport>
-  </ng-template>
-
-    <kendo-grid-column field="title" title="Title">
+  <kendo-grid
+    [data]="home"
+    [kendoGridBinding]="home"
+    kendoGridSelectBy="id"
+    [pageSize]="5"
+    [pageable]="true"
+    [sortable]="true"
+    [reorderable]="true"
+    [columnMenu]="{ filter: true }"
+    class="grid-main"
+  >
+    <ng-template kendoGridToolbarTemplate>
+      <button
+        type="button"
+        kendoGridExcelCommand
+        icon="file-excel"
+        (click)="excelexport.save()"
+        class="btn btn-success"
+      >
+        Export to Excel <i class="bi bi-file-earmark-excel"></i>
+      </button>
+      <kendo-excelexport [data]="home" fileName="filmlist.xlsx" #excelexport>
+        <kendo-excelexport-column field="id" title="ID">
+        </kendo-excelexport-column>
+        <kendo-excelexport-column field="title" title="Title">
+        </kendo-excelexport-column>
+        <kendo-excelexport-column field="duration" title="Duration">
+        </kendo-excelexport-column>
+        <kendo-excelexport-column field="description" title="Description">
+        </kendo-excelexport-column>
+      </kendo-excelexport>
+    </ng-template>
+    <!-- <kendo-grid-column field="thumbnail" title="Img">
       <ng-template kendoGridCellTemplate let-dataItem>
-        <img [src]="dataItem.thumbnail" height="50px" width="50px" style="border-radius: 50%;"> <strong> - {{dataItem.title}}</strong>
+        <img [src]="dataItem.thumbnail" height="50px" width="50px" style="border-radius: 50%;">
+      </ng-template>
+    </kendo-grid-column> -->
+    <kendo-grid-column field="title" title="Title" [width]="300">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <img
+          [src]="dataItem.thumbnail"
+          height="50px"
+          width="50px"
+          style="border-radius: 50%"
+        />
+        <strong> - {{ dataItem.title }}</strong>
       </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="duration" title="Duration"> </kendo-grid-column>
-    <kendo-grid-column  title="Rating">
-    <ng-template kendoGridCellTemplate let-ratingItem>
-      {{average(ratingItem.rating)}}
-    </ng-template>
+    <kendo-grid-column field="duration" [width]="115" title="Duration">
     </kendo-grid-column>
-    <kendo-grid-column  title="Description" >
+    <kendo-grid-column
+      filter="numeric"
+      [width]="110"
+      field="vote"
+      title="Rating"
+    >
+      <ng-template kendoGridCellTemplate let-ratingItem>
+        <!-- {{ratingItem.vote}} -->
+        <app-rating [max]="5" [value]="ratingItem.vote / 2"></app-rating>
+        <!-- <span>{{average(ratingItem.rating)}}</span> -->
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column title="Description">
       <ng-template kendoGridCellTemplate let-dataItem>
-        <span kendoTooltip tooltipClass="ken-span" title="{{dataItem.description}}" position="top" >
+        <span
+          kendoTooltip
+          tooltipClass="my-class"
+          title="{{ dataItem.description }}"
+          position="right"
+        >
           Hover to show description
         </span>
-        </ng-template>
+      </ng-template>
     </kendo-grid-column>
-
+    <kendo-grid-column title="Favorite" [width]="110">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div
+          style="display: flex; align-items: center; justify-content: center"
+        >
+          <p class="col-2">
+            <i
+              class="bi bi-heart"
+              (click)="favorite(dataItem)"
+              *ngIf="!favControl(dataItem)"
+            ></i>
+            <i
+              class="bi bi-heart-fill text-danger"
+              *ngIf="favControl(dataItem)"
+              (click)="removeFav(dataItem)"
+            ></i>
+          </p>
+        </div>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column title="Edit" [width]="110">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div
+          style="display: flex; align-items: center; justify-content: center"
+        >
+          <p class="col-2" (click)="edit = !edit; editId = dataItem.id!">
+            <i class="bi bi-pencil text-warning"></i>
+          </p>
+        </div>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column title="Delete" [width]="110">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div
+          style="display: flex; align-items: center; justify-content: center"
+        >
+          <p class="col-2" (click)="deleteFilm(dataItem.id!)">
+            <i class="bi bi-trash text-danger"></i>
+          </p>
+        </div>
+      </ng-template>
+    </kendo-grid-column>
   </kendo-grid>
 
-
-
-
-  <div class="add" (click)="add=!add"><i class="bi bi-plus"></i></div>
-
+  <div class="add" (click)="add = !add"><i class="bi bi-plus"></i></div>
 
   <div class="modale" *ngIf="add">
     <h2>Add a film</h2>
-    <form [formGroup]="filmForm" (submit)="addFilm(); add=!add; resetForm()">
+    <form [formGroup]="filmForm" (submit)="addFilm(); add = !add; resetForm()">
       <label for="filmTitle">Title:</label>
       <input class="form-control" type="text" formControlName="filmTitle" />
       <label for="duration">Duration:</label>
       <input class="form-control" type="number" formControlName="duration" />
       <input class="btn btn-primary mt-3" type="submit" value="Save film" />
-      <input class="btn btn-secondary mt-3 ms-2" type="button" value="Cancel" (click)="add=!add; resetForm()"/>
+      <input
+        class="btn btn-secondary mt-3 ms-2"
+        type="button"
+        value="Cancel"
+        (click)="add = !add; resetForm()"
+      />
     </form>
   </div>
 
   <div class="modale text-center" *ngIf="deleted">
-    <h3>Film deleted correctly <i class="bi bi-check-all text-ehite" style="font-size: 2.5rem;"></i></h3>
-    <div class="btn btn-primary m-2" (click)="deleted=!deleted">ok</div>
+    <h3>
+      Film deleted correctly
+      <i class="bi bi-check-all text-ehite" style="font-size: 2.5rem"></i>
+    </h3>
+    <div class="btn btn-primary m-2" (click)="deleted = !deleted">ok</div>
   </div>
 
   <div class="modale" *ngIf="edit">
     <h2>Edit film</h2>
-    <button class="btn btn-primary" (click)="watched(editId)" *ngIf="controlWatch(editId)">Watched? <i class="bi bi-eye"></i></button>
-    <button class="btn btn-danger" (click)="watched(editId)" *ngIf="!controlWatch(editId)">Watched? <i class="bi bi-eye"></i></button>
-    <form [formGroup]="patchFilmForm" (submit)="patchFilm(editId); edit=!edit; edited=!edited">
+    <button
+      class="btn btn-primary"
+      (click)="watched(editId)"
+      *ngIf="controlWatch(editId)"
+    >
+      Watched? <i class="bi bi-eye"></i>
+    </button>
+    <button
+      class="btn btn-danger"
+      (click)="watched(editId)"
+      *ngIf="!controlWatch(editId)"
+    >
+      Watched? <i class="bi bi-eye"></i>
+    </button>
+    <form
+      [formGroup]="patchFilmForm"
+      (submit)="patchFilm(editId); edit = !edit; edited = !edited"
+    >
       <!-- <label for="filmTitle">Title:</label>
       <input class="form-control" type="text" formControlName="filmTitle" /> -->
       <label for="duration">Vote:</label>
       <input class="form-control" type="number" formControlName="vote" />
       <input class="btn btn-danger mt-3" type="submit" value="Edit film" />
-      <input class="btn btn-secondary mt-3 ms-2" type="button" value="Cancel" (click)=" edit=!edit; resetForm()"/>
+      <input
+        class="btn btn-secondary mt-3 ms-2"
+        type="button"
+        value="Cancel"
+        (click)="edit = !edit; resetForm()"
+      />
     </form>
-
   </div>
 
   <div class="modale text-center" *ngIf="edited">
-    <h3>Film edited correctly <i class="bi bi-check-all text-ehite" style="font-size: 2.5rem;"></i></h3>
-    <div class="btn btn-primary m-2" (click)="edited=!edited">ok</div>
+    <h3>
+      Film edited correctly
+      <i class="bi bi-check-all text-ehite" style="font-size: 2.5rem"></i>
+    </h3>
+    <div class="btn btn-primary m-2" (click)="edited = !edited">ok</div>
   </div>
 </div>
 <!-- <kendo-grid
@@ -127,4 +220,3 @@
 <kendo-grid-column field="title" title="title" [width]="140"></kendo-grid-column>
 </kendo-grid>
  -->
-

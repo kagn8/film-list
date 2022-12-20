@@ -18,6 +18,7 @@ import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
 import { TooltipModule } from '@progress/kendo-angular-tooltip';
+import { RatingComponent } from './components/rating/rating.component';
 
 
 
@@ -32,7 +33,8 @@ import { TooltipModule } from '@progress/kendo-angular-tooltip';
     FavoritesComponent,
     BestRatedComponent,
     SeenComponent,
-    UnseenComponent
+    UnseenComponent,
+    RatingComponent
   ],
   imports: [
     ReactiveFormsModule,

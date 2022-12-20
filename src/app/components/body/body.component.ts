@@ -11,6 +11,7 @@ import { ServiceService } from 'src/app/service/service.service';
 @Component({
   selector: 'app-body',
   templateUrl: './body.component.html',
+  encapsulation: ViewEncapsulation.None,
   styleUrls: ['./body.component.scss']
 })
 export class BodyComponent implements OnInit{
@@ -35,10 +36,17 @@ export class BodyComponent implements OnInit{
   light!:boolean
 
 
-  average(array:number[]){
+  average(array:number[]):number{
+    let media = 0;
+
     if (array.length>0) {
-      return (array.reduce((a, b) => a + b) / array.length).toFixed(1)
-      } else return 0
+
+      media = array.reduce((a, b) => a + b, 0) / array.length;
+
+    }
+      console.log('AVERAGE:',media)
+
+      return media;
     }
 
   // average(array:number[]){
@@ -70,6 +78,7 @@ export class BodyComponent implements OnInit{
   patchFilm(id:number){
     this.serv.getFilm(id).subscribe((res:any)=>{
       res.rating.push(this.patchFilmForm.value.vote);
+      res.vote = this.average(res.rating)
     this.serv.patchFilm(res.id, res).subscribe(res=> {this.resetForm();this.getHome()})})
   }
 
